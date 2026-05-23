@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul SAS Matematika Wajib XI</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #1565C0;
+    --blue-light: #1976D2;
+    --blue-bright: #2196F3;
+    --blue-pale: #E3F2FD;
+    --blue-card: #1E88E5;
+    --teal: #00897B;
+    --teal-light: #E0F2F1;
+    --orange: #F57C00;
+    --orange-light: #FFF3E0;
+    --purple: #6A1B9A;
+    --purple-light: #F3E5F5;
+    --green: #2E7D32;
+    --green-light: #E8F5E9;
+    --red: #C62828;
+    --red-light: #FFEBEE;
+    --white: #FFFFFF;
+    --text: #1A237E;
+    --text-dark: #0D1B5E;
+    --gray-light: #F8F9FA;
+    --shadow: 0 4px 20px rgba(21,101,192,0.15);
+    --shadow-card: 0 8px 32px rgba(21,101,192,0.2);
+  }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: linear-gradient(135deg, #0D47A1 0%, #1565C0 40%, #1976D2 70%, #42A5F5 100%);
+    min-height: 100vh;
+    padding: 24px 16px 48px;
+    color: var(--text-dark);
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 24px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-bottom: 32px;
+    backdrop-filter: blur(10px);
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    color: #E3F2FD;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.3);
+    margin-bottom: 24px;
+  }
+
+  .cover h1 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  .cover h1 span {
+    color: #90CAF9;
+  }
+
+  .cover-sub {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+  }
+
+  .cover-topics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .topic-pill {
+    background: rgba(255,255,255,0.15);
+    color: #E3F2FD;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+
+  /* ===== CHAPTER CARD ===== */
+  .chapter {
+    background: #FFFFFF;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .chapter-header {
+    padding: 24px 32px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid #E8EAF6;
+  }
+
+  .chapter-header.biru { background: #1565C0; }
+  .chapter-header.teal { background: #00695C; }
+  .chapter-header.orange { background: #E65100; }
+  .chapter-header.purple { background: #4A148C; }
+
+  .chapter-num {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 800; color: #FFFFFF;
+    flex-shrink: 0;
+  }
+
+  .chapter-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.2;
+  }
+
+  .chapter-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  .chapter-body {
+    padding: 28px 32px;
+  }
+
+  /* ===== FORMULA BOX ===== */
+  .formula-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #90A4AE;
+    margin-bottom: 16px;
+    margin-top: 24px;
+  }
+
+  .formula-section-title:first-child {
+    margin-top: 0;
+  }
+
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .formula-box {
+    border-radius: 16px;
+    padding: 20px 24px;
+    border: 1.5px solid;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .formula-box::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    border-radius: 0 16px 0 80px;
+    opacity: 0.07;
+  }
+
+  .formula-box.blue {
+    background: #E3F2FD;
+    border-color: #90CAF9;
+  }
+  .formula-box.blue::before { background: #1565C0; opacity: 0.12; }
+
+  .formula-box.teal {
+    background: #E0F2F1;
+    border-color: #80CBC4;
+  }
+  .formula-box.teal::before { background: #00695C; }
+
+  .formula-box.orange {
+    background: #FFF3E0;
+    border-color: #FFCC80;
+  }
+  .formula-box.orange::before { background: #E65100; }
+
+  .formula-box.purple {
+    background: #F3E5F5;
+    border-color: #CE93D8;
+  }
+  .formula-box.purple::before { background: #4A148C; }
+
+  .formula-box.green {
+    background: #E8F5E9;
+    border-color: #A5D6A7;
+  }
+
+  .formula-box.red {
+    background: #FFEBEE;
+    border-color: #EF9A9A;
+  }
+
+  .formula-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .formula-box.blue .formula-label { color: #1565C0; }
+  .formula-box.teal .formula-label { color: #00695C; }
+  .formula-box.orange .formula-label { color: #E65100; }
+  .formula-box.purple .formula-label { color: #4A148C; }
+  .formula-box.green .formula-label { color: #2E7D32; }
+  .formula-box.red .formula-label { color: #C62828; }
+
+  .formula-math {
+    font-size: 22px;
+    text-align: center;
+    padding: 12px 8px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .formula-note {
+    font-size: 12px;
+    color: #546E7A;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+  .formula-note span {
+    font-weight: 600;
+    color: #37474F;
+  }
+
+  /* Highlight box "syarat" */
+  .syarat-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 12px;
+    margin-top: 8px;
+    color: #37474F;
+  }
+
+  /* ===== SINGLE WIDE FORMULA ===== */
+  .formula-wide {
+    border-radius: 16px;
+    padding: 22px 28px;
+    border: 1.5px solid;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .formula-wide.blue { background: #E3F2FD; border-color: #90CAF9; }
+  .formula-wide.teal { background: #E0F2F1; border-color: #80CBC4; }
+  .formula-wide.orange { background: #FFF3E0; border-color: #FFCC80; }
+
+  .formula-wide-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    min-width: 120px;
+  }
+
+  .formula-wide.blue .formula-wide-label { color: #1565C0; }
+  .formula-wide.teal .formula-wide-label { color: #00695C; }
+  .formula-wide.orange .formula-wide-label { color: #E65100; }
+
+  .formula-wide-math {
+    font-size: 20px;
+    flex: 1;
+    text-align: center;
+    background: rgba(255,255,255,0.65);
+    padding: 10px 16px;
+    border-radius: 10px;
+  }
+
+  .formula-wide-note {
+    font-size: 12px;
+    color: #546E7A;
+    min-width: 100px;
+    text-align: right;
+  }
+
+  /* ===== KETERANGAN BLOCK ===== */
+  .keterangan {
+    background: #F8F9FA;
+    border-left: 4px solid #90A4AE;
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #546E7A;
+    line-height: 2;
+  }
+
+  .keterangan strong {
+    color: #37474F;
+    font-weight: 600;
+  }
+
+  /* ===== PROSE ===== */
+  .prose {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: #37474F;
+    margin-bottom: 16px;
+  }
+
+  .example-block {
+    background: #FAFAFA;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-top: 12px;
+    font-size: 13.5px;
+    color: #455A64;
+  }
+
+  .example-block strong { color: #263238; font-weight: 600; }
+
+  /* ===== RINGKASAN TABLE ===== */
+  .summary-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13.5px;
+    margin-top: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #E0E0E0;
+  }
+
+  .summary-table thead tr {
+    background: #1565C0;
+  }
+
+  .summary-table thead th {
+    padding: 12px 16px;
+    text-align: left;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .summary-table tbody tr:nth-child(even) {
+    background: #F5F7FF;
+  }
+
+  .summary-table tbody tr:nth-child(odd) {
+    background: #FFFFFF;
+  }
+
+  .summary-table tbody td {
+    padding: 11px 16px;
+    color: #37474F;
+    border-top: 1px solid #EEE;
+    vertical-align: middle;
+  }
+
+  .summary-table tbody td:first-child {
+    font-weight: 600;
+    color: #1565C0;
+  }
+
+  .summary-table .formula-cell {
+    font-family: 'KaTeX_Math', serif;
+    color: #263238;
+    font-size: 14px;
+  }
+
+  /* ===== SOAL LATIHAN ===== */
+  .soal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .soal-icon {
+    width: 40px; height: 40px;
+    background: #1565C0;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+
+  .soal-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1A237E;
+  }
+
+  .soal-list {
+    list-style: none;
+    counter-reset: soal;
+  }
+
+  .soal-item {
+    counter-increment: soal;
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid #EEEEEE;
+    align-items: flex-start;
+  }
+
+  .soal-item:last-child { border-bottom: none; }
+
+  .soal-num {
+    width: 30px; height: 30px;
+    background: #E3F2FD;
+    border: 1.5px solid #90CAF9;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #1565C0;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .soal-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #37474F;
+  }
+
+  .soal-tag {
+    display: inline-block;
+    background: #FFF3E0;
+    color: #E65100;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* ===== TIPS BOX ===== */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .tip-card {
+    background: #FFFFFF;
+    border: 1.5px solid #E3F2FD;
+    border-top: 4px solid #1565C0;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .tip-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #1565C0;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .tip-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #455A64;
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #C5CAE9, transparent);
+    margin: 20px 0;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    margin-top: 32px;
+    padding: 24px;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+  }
+
+  .katex { font-size: 1em; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-badge">Modul Lengkap</div>
+    <h1>Modul SAS<br><span>Matematika Wajib</span> XI</h1>
+    <p class="cover-sub">Persiapan Sumatif Akhir Semester · Kelas XI</p>
+    <div class="cover-topics">
+      <span class="topic-pill">📐 Barisan & Deret Aritmetika</span>
+      <span class="topic-pill">🔢 Barisan & Deret Geometri</span>
+      <span class="topic-pill">💰 Matematika Keuangan</span>
+      <span class="topic-pill">🟦 Matriks</span>
+      <span class="topic-pill">🎯 Latihan HOTS</span>
+    </div>
+  </div>
+
+  <!-- BAB 1: ARITMETIKA -->
+  <div class="chapter">
+    <div class="chapter-header biru">
+      <div class="chapter-num">1</div>
+      <div>
+        <div class="chapter-title">Barisan & Deret Aritmetika</div>
+        <div class="chapter-sub">Pola dengan beda tetap antar suku</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <p class="prose">Barisan aritmetika adalah barisan bilangan dengan <strong>beda tetap (b)</strong> antar suku berurutan. Deret aritmetika adalah penjumlahan suku-sukunya.</p>
+
+      <div class="example-block">
+        <strong>Contoh barisan:</strong> 2, 5, 8, 11, ... (beda = 3)<br>
+        <strong>Contoh deret:</strong> 2 + 5 + 8 + 11 + ...
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="formula-section-title">Rumus Utama</p>
+
+      <div class="formula-grid">
+        <div class="formula-box blue">
+          <div class="formula-label">Suku ke-n</div>
+          <div class="formula-math" id="f-un-a"></div>
+          <div class="keterangan">
+            <strong>a</strong> = suku pertama<br>
+            <strong>b</strong> = beda<br>
+            <strong>n</strong> = posisi suku
+          </div>
+        </div>
+        <div class="formula-box teal">
+          <div class="formula-label">Jumlah n Suku Pertama</div>
+          <div class="formula-math" id="f-sn-a"></div>
+          <div class="keterangan">
+            Atau jika diketahui suku terakhir (<strong>Un</strong>):<br>
+            <span id="f-sn-a2" style="display:inline-block;margin-top:6px;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BAB 2: GEOMETRI -->
+  <div class="chapter">
+    <div class="chapter-header teal">
+      <div class="chapter-num">2</div>
+      <div>
+        <div class="chapter-title">Barisan & Deret Geometri</div>
+        <div class="chapter-sub">Pola dengan rasio tetap antar suku</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <p class="prose">Barisan geometri adalah barisan bilangan dengan <strong>rasio tetap (r)</strong>. Setiap suku diperoleh dengan mengalikan suku sebelumnya dengan r.</p>
+
+      <div class="example-block">
+        <strong>Contoh:</strong> 2, 6, 18, 54, ... → rasio r = 6/2 = <strong>3</strong>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="formula-section-title">Rumus Utama</p>
+
+      <div class="formula-grid">
+        <div class="formula-box blue">
+          <div class="formula-label">Suku ke-n</div>
+          <div class="formula-math" id="f-un-g"></div>
+          <div class="keterangan">
+            <strong>a</strong> = suku pertama<br>
+            <strong>r</strong> = rasio (U₂/U₁)
+          </div>
+        </div>
+        <div class="formula-box teal">
+          <div class="formula-label">Jumlah n Suku (r ≠ 1)</div>
+          <div class="formula-math" id="f-sn-g1"></div>
+          <div class="syarat-badge">Syarat: r &lt; 1</div><br>
+          <div class="formula-math" id="f-sn-g2" style="margin-top:10px;"></div>
+          <div class="syarat-badge">Syarat: r &gt; 1</div>
+        </div>
+      </div>
+
+      <div class="formula-grid" style="margin-top:16px;">
+        <div class="formula-box orange">
+          <div class="formula-label">Deret Geometri Tak Hingga</div>
+          <div class="formula-math" id="f-sinf"></div>
+          <div class="keterangan">
+            Hanya berlaku jika <strong>|r| &lt; 1</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="keterangan" style="margin-top:16px;">
+        <strong>Penerapan deret geometri:</strong> pertumbuhan bakteri · bunga majemuk · bola memantul · pertumbuhan pengguna
+      </div>
+    </div>
+  </div>
+
+  <!-- BAB 3: KEUANGAN -->
+  <div class="chapter">
+    <div class="chapter-header orange">
+      <div class="chapter-num">3</div>
+      <div>
+        <div class="chapter-title">Matematika Keuangan</div>
+        <div class="chapter-sub">Bunga tunggal, bunga majemuk, anuitas</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+
+      <p class="formula-section-title">Bunga Tunggal</p>
+      <p class="prose">Bunga dihitung selalu dari <strong>modal awal</strong>, tidak berubah setiap periode.</p>
+
+      <div class="formula-grid">
+        <div class="formula-box orange">
+          <div class="formula-label">Besar Bunga</div>
+          <div class="formula-math" id="f-b"></div>
+        </div>
+        <div class="formula-box orange">
+          <div class="formula-label">Jumlah Akhir</div>
+          <div class="formula-math" id="f-a-tunggal"></div>
+        </div>
+      </div>
+      <div class="keterangan">
+        <strong>M</strong> = modal awal &nbsp;|&nbsp; <strong>i</strong> = suku bunga (desimal) &nbsp;|&nbsp; <strong>t</strong> = waktu
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="formula-section-title">Bunga Majemuk</p>
+      <p class="prose">Bunga dihitung dari <strong>saldo terakhir</strong> (termasuk bunga sebelumnya — berbunga-bunga).</p>
+
+      <div class="formula-grid">
+        <div class="formula-box purple">
+          <div class="formula-label">Jumlah Akhir</div>
+          <div class="formula-math" id="f-a-majemuk"></div>
+          <div class="keterangan">
+            <strong>n</strong> = jumlah periode
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="formula-section-title">Anuitas</p>
+      <div class="example-block">
+        <strong>Anuitas</strong> = angsuran pokok + bunga<br>
+        • Total cicilan tetap setiap periode<br>
+        • Bunga makin kecil seiring waktu<br>
+        • Angsuran pokok makin besar seiring waktu
+      </div>
+    </div>
+  </div>
+
+  <!-- BAB 4: MATRIKS -->
+  <div class="chapter">
+    <div class="chapter-header purple">
+      <div class="chapter-num">4</div>
+      <div>
+        <div class="chapter-title">Matriks</div>
+        <div class="chapter-sub">Susunan bilangan dalam baris dan kolom</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <p class="prose">Matriks adalah susunan bilangan berbentuk persegi panjang dengan <strong>ordo = baris × kolom</strong>.</p>
+
+      <div class="formula-grid">
+        <div class="formula-box blue">
+          <div class="formula-label">Penjumlahan / Pengurangan</div>
+          <div class="formula-math" id="f-mat1"></div>
+          <div class="keterangan">Operasikan elemen-elemen yang bersesuaian. Ordo harus sama.</div>
+        </div>
+        <div class="formula-box teal">
+          <div class="formula-label">Transpose</div>
+          <div class="formula-math" id="f-mat2"></div>
+          <div class="keterangan">Baris menjadi kolom, kolom menjadi baris.</div>
+        </div>
+      </div>
+
+      <div class="keterangan" style="margin-top:16px;">
+        <strong>Kesamaan matriks:</strong> ordo sama &amp; semua elemen yang bersesuaian bernilai sama
+      </div>
+    </div>
+  </div>
+
+  <!-- RINGKASAN RUMUS -->
+  <div class="chapter">
+    <div class="chapter-header biru">
+      <div class="chapter-num">📋</div>
+      <div>
+        <div class="chapter-title">Ringkasan Rumus Penting</div>
+        <div class="chapter-sub">Semua rumus dalam satu tabel</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>Materi</th>
+            <th>Rumus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Suku ke-n Aritmetika</td>
+            <td class="formula-cell" id="s1"></td>
+          </tr>
+          <tr>
+            <td>Jumlah Deret Aritmetika</td>
+            <td class="formula-cell" id="s2"></td>
+          </tr>
+          <tr>
+            <td>Suku ke-n Geometri</td>
+            <td class="formula-cell" id="s3"></td>
+          </tr>
+          <tr>
+            <td>Jumlah Deret Geometri</td>
+            <td class="formula-cell" id="s4"></td>
+          </tr>
+          <tr>
+            <td>Deret Geometri Tak Hingga</td>
+            <td class="formula-cell" id="s5"></td>
+          </tr>
+          <tr>
+            <td>Bunga Tunggal</td>
+            <td class="formula-cell" id="s6"></td>
+          </tr>
+          <tr>
+            <td>Jumlah Akhir Bunga Tunggal</td>
+            <td class="formula-cell" id="s7"></td>
+          </tr>
+          <tr>
+            <td>Bunga Majemuk</td>
+            <td class="formula-cell" id="s8"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- LATIHAN SOAL -->
+  <div class="chapter">
+    <div class="chapter-header biru">
+      <div class="chapter-num">✏️</div>
+      <div>
+        <div class="chapter-title">Latihan Soal HOTS Setara SAS</div>
+        <div class="chapter-sub">15 soal pemantapan — kerjakan secara mandiri</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <ul class="soal-list">
+        <li class="soal-item"><div class="soal-num">1</div><div class="soal-text">Sebuah perusahaan startup mencatat jumlah pengguna aplikasinya setiap bulan. Pada bulan pertama terdapat <strong>1.200 pengguna aktif</strong>. Karena strategi promosi baru, jumlah pengguna bertambah tetap sebanyak <strong>350 pengguna</strong> setiap bulan. Tentukan bulan pertama jumlah pengguna melebihi 10.000! <span class="soal-tag">Aritmetika</span></div></li>
+        <li class="soal-item"><div class="soal-num">2</div><div class="soal-text">Dalam sebuah gedung konser, jumlah kursi tiap baris membentuk barisan aritmetika. Jumlah kursi pada baris ke-4 adalah <strong>38 kursi</strong> dan pada baris ke-10 adalah <strong>74 kursi</strong>. Tentukan jumlah kursi pada 20 baris pertama! <span class="soal-tag">Aritmetika</span></div></li>
+        <li class="soal-item"><div class="soal-num">3</div><div class="soal-text">Seorang atlet meningkatkan durasi latihan hariannya secara bertahap. Hari pertama <strong>18 menit</strong> dan bertambah <strong>4 menit</strong> setiap hari. Tentukan total durasi latihan sampai hari terakhir sebelum melebihi 90 menit! <span class="soal-tag">Aritmetika</span></div></li>
+        <li class="soal-item"><div class="soal-num">4</div><div class="soal-text">Sebuah laboratorium mengembangbiakkan bakteri. Awalnya terdapat <strong>400 bakteri</strong> dan setiap <strong>3 jam</strong> jumlahnya menjadi dua kali lipat. Tentukan kapan jumlah bakteri melebihi 100.000! <span class="soal-tag">Geometri</span></div></li>
+        <li class="soal-item"><div class="soal-num">5</div><div class="soal-text">Sebuah video edukasi diunggah ke media sosial. Hari pertama ditonton <strong>800 orang</strong> dan setiap hari meningkat menjadi <strong>3/2 kali</strong> dari sebelumnya. Tentukan hari pertama penonton melebihi 20.000! <span class="soal-tag">Geometri</span></div></li>
+        <li class="soal-item"><div class="soal-num">6</div><div class="soal-text">Sebuah bola dijatuhkan dari ketinggian <strong>24 meter</strong> dan memantul <strong>2/3 dari tinggi sebelumnya</strong>. Tentukan total lintasan bola (termasuk pantulan tak hingga)! <span class="soal-tag">Geometri ∞</span></div></li>
+        <li class="soal-item"><div class="soal-num">7</div><div class="soal-text">Raka menabung <strong>Rp8.000.000</strong> dengan bunga tunggal <strong>9% per tahun</strong>. Tentukan lama menabung agar jumlah uang menjadi Rp10.160.000! <span class="soal-tag">Keuangan</span></div></li>
+        <li class="soal-item"><div class="soal-num">8</div><div class="soal-text">Tabungan <strong>Rp12.000.000</strong> disimpan dengan bunga majemuk <strong>8% per tahun</strong>. Tentukan kapan tabungan pertama kali melebihi Rp17.000.000! <span class="soal-tag">Keuangan</span></div></li>
+        <li class="soal-item"><div class="soal-num">9</div><div class="soal-text">Sebuah perusahaan menawarkan investasi dengan <strong>bunga tunggal 14%</strong> dan <strong>bunga majemuk 11%</strong>. Tentukan investasi yang lebih menguntungkan setelah <strong>6 tahun</strong>! <span class="soal-tag">Keuangan</span></div></li>
+        <li class="soal-item"><div class="soal-num">10</div><div class="soal-text">Sebuah toko mencatat penjualan barang dalam bentuk matriks penjualan. Tentukan <strong>total pendapatan</strong> berdasarkan matriks harga tiap barang! <span class="soal-tag">Matriks</span></div></li>
+        <li class="soal-item"><div class="soal-num">11</div><div class="soal-text">Tentukan transpose dari matriks <strong>2 × 3</strong> dan jelaskan maknanya secara geometris! <span class="soal-tag">Matriks</span></div></li>
+        <li class="soal-item"><div class="soal-num">12</div><div class="soal-text">Diketahui dua matriks sama. Tentukan nilai <strong>x</strong> dan <strong>y</strong> dari elemen-elemen yang bersesuaian! <span class="soal-tag">Matriks</span></div></li>
+        <li class="soal-item"><div class="soal-num">13</div><div class="soal-text">Hitung hasil operasi <strong>A − Bᵀ</strong> dari dua matriks yang diberikan! <span class="soal-tag">Matriks</span></div></li>
+        <li class="soal-item"><div class="soal-num">14</div><div class="soal-text">Tentukan matriks <strong>keuntungan bersih</strong> perusahaan berdasarkan data matriks keuntungan dan kerugian! <span class="soal-tag">Matriks</span></div></li>
+        <li class="soal-item"><div class="soal-num">15</div><div class="soal-text">Sebuah perusahaan logistik mencatat jumlah paket tiap minggu membentuk barisan aritmetika. Tentukan <strong>total pendapatan selama 12 minggu</strong>! <span class="soal-tag">Aritmetika</span></div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="chapter">
+    <div class="chapter-header biru">
+      <div class="chapter-num">💡</div>
+      <div>
+        <div class="chapter-title">Tips Mengerjakan SAS</div>
+        <div class="chapter-sub">Strategi agar nilai maksimal</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-num">Tips 01</div>
+          <div class="tip-text">Pahami <strong>konsep dasar</strong> sebelum menghafal rumus.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">Tips 02</div>
+          <div class="tip-text">Perhatikan <strong>kata kunci</strong> pada soal cerita dengan cermat.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">Tips 03</div>
+          <div class="tip-text">Ubah <strong>persen ke desimal</strong> (÷ 100) sebelum menghitung.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">Tips 04</div>
+          <div class="tip-text">Pastikan <strong>ordo matriks sama</strong> sebelum dijumlahkan/dikurangkan.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">Tips 05</div>
+          <div class="tip-text">Kerjakan <strong>transpose terlebih dahulu</strong> jika ada operasi campuran.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">Tips 06</div>
+          <div class="tip-text">Deret geometri tak hingga: pastikan <strong>|r| &lt; 1</strong> sebelum memakai S∞.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">Tips 07</div>
+          <div class="tip-text">Tulis <strong>Diketahui & Ditanya</strong> agar tidak salah langkah.</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">Tips 08</div>
+          <div class="tip-text">Latihan soal HOTS secara <strong>rutin</strong> agar terbiasa pola soalnya.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Modul SAS Matematika Wajib XI &nbsp;·&nbsp; Semangat belajar! 🎯</div>
+</div>
+
+<script>
+  function render(id, formula) {
+    const el = document.getElementById(id);
+    if (el) katex.render(formula, el, { throwOnError: false, displayMode: true });
+  }
+
+  // Bab 1 - Aritmetika
+  render('f-un-a', 'U_n = a + (n-1)b');
+  render('f-sn-a', 'S_n = \\dfrac{n}{2}\\left(2a + (n-1)b\\right)');
+  render('f-sn-a2', 'S_n = \\dfrac{n}{2}(a + U_n)');
+
+  // Bab 2 - Geometri
+  render('f-un-g', 'U_n = a \\cdot r^{\\,n-1}');
+  render('f-sn-g1', 'S_n = \\dfrac{a(1 - r^n)}{1 - r}');
+  render('f-sn-g2', 'S_n = \\dfrac{a(r^n - 1)}{r - 1}');
+  render('f-sinf', 'S_{\\infty} = \\dfrac{a}{1 - r}');
+
+  // Bab 3 - Keuangan
+  render('f-b', 'B = M \\times i \\times t');
+  render('f-a-tunggal', 'A = M(1 + it)');
+  render('f-a-majemuk', 'A = M(1 + i)^n');
+
+  // Bab 4 - Matriks
+  render('f-mat1', '(A \\pm B)_{ij} = a_{ij} \\pm b_{ij}');
+  render('f-mat2', '(A^T)_{ij} = A_{ji}');
+
+  // Ringkasan
+  render('s1', 'U_n = a + (n-1)b');
+  render('s2', 'S_n = \\tfrac{n}{2}(2a + (n-1)b)');
+  render('s3', 'U_n = a \\cdot r^{n-1}');
+  render('s4', 'S_n = \\dfrac{a(r^n - 1)}{r - 1}');
+  render('s5', 'S_{\\infty} = \\dfrac{a}{1 - r},\\quad |r|<1');
+  render('s6', 'B = M \\times i \\times t');
+  render('s7', 'A = M(1 + it)');
+  render('s8', 'A = M(1 + i)^n');
+</script>
+</body>
+</html>
